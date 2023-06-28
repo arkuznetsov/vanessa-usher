@@ -391,7 +391,7 @@
     },
     "tdd" : {
       "type" : "object",
-      "id" : "urn:jsonschema:org:silverbulleters:usher:config:stage:TddOptional",
+      "id" : "urn:jsonschema:org:silverbulleters:usher:config:stage:XUnitOptional",
       "description" : "Настройки этапа TDD (Test-driven development)",
       "properties" : {
         "timeout" : {
@@ -422,7 +422,7 @@
     },
     "bdd" : {
       "type" : "object",
-      "id" : "urn:jsonschema:org:silverbulleters:usher:config:stage:BddOptional",
+      "id" : "urn:jsonschema:org:silverbulleters:usher:config:stage:VanessaOptional",
       "description" : "Настройки этапа BDD (Behavior-driven development)",
       "properties" : {
         "timeout" : {

@@ -8,13 +8,13 @@ package org.silverbulleters.usher.wrapper
 
 import org.silverbulleters.usher.config.PipelineConfiguration
 import org.silverbulleters.usher.config.additional.ExtensionSource
-import org.silverbulleters.usher.config.stage.BddOptional
+import org.silverbulleters.usher.config.stage.VanessaOptional
 import org.silverbulleters.usher.config.stage.RunExternalDataProcessorsOptional
 import org.silverbulleters.usher.config.stage.CheckExtensionsOptional
 import org.silverbulleters.usher.config.stage.PrepareBaseOptional
 import org.silverbulleters.usher.config.stage.SmokeOptional
 import org.silverbulleters.usher.config.stage.SyntaxCheckOptional
-import org.silverbulleters.usher.config.stage.TddOptional
+import org.silverbulleters.usher.config.stage.XUnitOptional
 import org.silverbulleters.usher.util.Common
 
 /**
@@ -248,7 +248,7 @@ class VRunner {
    * @param optional настройка tdd
    * @return строка команды
    */
-  static def xunit(PipelineConfiguration config, TddOptional optional) {
+  static def xunit(PipelineConfiguration config, XUnitOptional optional) {
     def pathToAllure = "${optional.allurePath}/allure-xdd.xml"
     def command = [
         "vrunner",
@@ -277,7 +277,7 @@ class VRunner {
    * @param optional настройки bdd
    * @return строка команды
    */
-  static def vanessa(PipelineConfiguration config, BddOptional optional) {
+  static def vanessa(PipelineConfiguration config, VanessaOptional optional) {
     def command = [
         "vrunner",
         "vanessa",

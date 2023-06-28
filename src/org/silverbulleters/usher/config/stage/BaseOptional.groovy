@@ -25,7 +25,16 @@ class BaseOptional {
   @JsonIgnore
   String id = "base"
 
-  @JsonPropertyDescription("Таймаут времени работы этапа'")
+  @JsonPropertyDescription("Метки агента, разделенные пробелом")
+  String agentLabel = ""
+
+  @JsonPropertyDescription("Флаг включения отладки")
+  boolean debug = false
+
+  @JsonPropertyDescription("Таймаут времени работы этапа")
   int timeout = 0
+
+  @JsonPropertyDescription("Версия платформы 1С, например: \"8.3\", \"8.3.15\", \"8.3.18.1741\"")
+  String v8Version = ""
 
 }

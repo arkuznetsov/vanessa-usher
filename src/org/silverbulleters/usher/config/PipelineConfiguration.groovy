@@ -13,7 +13,7 @@ import org.silverbulleters.usher.UsherConstant
 import org.silverbulleters.usher.config.additional.InfoBase
 import org.silverbulleters.usher.config.additional.MatrixTesting
 import org.silverbulleters.usher.config.additional.NotificationOptional
-import org.silverbulleters.usher.config.stage.BddOptional
+import org.silverbulleters.usher.config.stage.VanessaOptional
 import org.silverbulleters.usher.config.stage.BuildOptional
 import org.silverbulleters.usher.config.stage.CheckExtensionsOptional
 import org.silverbulleters.usher.config.stage.EdtTransformOptional
@@ -23,7 +23,7 @@ import org.silverbulleters.usher.config.stage.RunExternalDataProcessorsOptional
 import org.silverbulleters.usher.config.stage.SmokeOptional
 import org.silverbulleters.usher.config.stage.SonarQubeOptional
 import org.silverbulleters.usher.config.stage.SyntaxCheckOptional
-import org.silverbulleters.usher.config.stage.TddOptional
+import org.silverbulleters.usher.config.stage.XUnitOptional
 import org.silverbulleters.usher.config.stage.YardOptional
 
 /**
@@ -93,11 +93,11 @@ class PipelineConfiguration implements Serializable {
 
   @JsonPropertyDescription("Настройки этапа TDD (Test-driven development)")
   @JsonProperty("tdd")
-  TddOptional tddOptional = new TddOptional()
+  XUnitOptional xunitOptional = new XUnitOptional()
 
   @JsonPropertyDescription("Настройки этапа BDD (Behavior-driven development)")
   @JsonProperty("bdd")
-  BddOptional bddOptional = new BddOptional()
+  VanessaOptional vanessaOptional = new VanessaOptional()
 
   @JsonPropertyDescription("Настройки этапа статического анализа для SonarQube")
   @JsonProperty("sonarqube")

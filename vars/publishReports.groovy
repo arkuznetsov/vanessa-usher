@@ -52,12 +52,12 @@ private def publish() {
   }
 
   if (config.stages.tdd) {
-    addToReport(reports, config.tddOptional.allurePath)
+    addToReport(reports, config.XUnitOptional.allurePath)
     unpackResult(state.tdd.stashes)
   }
 
   if (config.stages.bdd) {
-    addToReport(reports, config.bddOptional.allurePath)
+    addToReport(reports, config.VanessaOptional.allurePath)
     unpackResult(state.bdd.stashes)
   }
 

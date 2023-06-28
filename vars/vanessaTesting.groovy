@@ -6,7 +6,7 @@
  */
 import groovy.transform.Field
 import org.silverbulleters.usher.config.PipelineConfiguration
-import org.silverbulleters.usher.config.stage.TddOptional
+import org.silverbulleters.usher.config.stage.VanessaOptional
 import org.silverbulleters.usher.state.PipelineState
 import org.silverbulleters.usher.wrapper.VRunner
 
@@ -17,26 +17,26 @@ PipelineConfiguration config
 PipelineState state
 
 @Field
-TddOptional stageOptional
+VanessaOptional stageOptional
 
 /**
- * Выполнить модульное тестирование
+ * Выполнить поведенческое тестирование
  * @param config конфигурация
  * @param state состояние конвейера
  */
-void call(PipelineConfiguration config, TddOptional stageOptional, PipelineState state) {
+void call(PipelineConfiguration config, VanessaOptional stageOptional, PipelineState state) {
   this.config = config
   this.state = state
   this.stageOptional = stageOptional
 
   infobaseHelper.unpackInfobase(config: config, state: state)
 
-  catchError(message: 'Ошибка во время выполнения дымового тестирования', buildResult: 'FAILURE', stageResult: 'FAILURE') {
+  catchError(message: 'Ошибка во время выполнения bdd тестирования', buildResult: 'FAILURE', stageResult: 'FAILURE') {
     testing()
   }
 
   catchError(message: 'Ошибка во время архивации отчетов о тестировании', buildResult: 'FAILURE', stageResult: 'FAILURE') {
-    testResultsHelper.packTestResults(config, stageOptional, state.tdd)
+    testResultsHelper.packTestResults(config, stageOptional, state.bdd)
   }
 
 }
@@ -46,19 +46,15 @@ private def testing() {
   if (credentialHelper.authIsPresent(auth)) {
     withCredentials([usernamePassword(credentialsId: auth, usernameVariable: 'DBUSERNAME', passwordVariable: 'DBPASSWORD')]) {
       def credential = credentialHelper.getAuthString()
-      def credentialTestClient = credentialHelper.getTestClientWithAuth()
-      xddTesting(credential, credentialTestClient)
+      vanessaTesting(credential)
     }
   } else {
-    xddTesting()
+    vanessaTesting()
   }
 }
 
-private xddTesting(String credential = '', String credentialTestClient = '') {
-  def testClient = credentialTestClient.isEmpty() ? "::1538" : credentialTestClient
-
-  def command = VRunner.xunit(config, stageOptional)
+private vanessaTesting(String credential = '') {
+  def command = VRunner.vanessa(config, stageOptional)
   command = command.replace("%credentialID%", credential)
-  command = command.replace("%credentialTestClientID%", testClient)
   cmdRun(command)
 }

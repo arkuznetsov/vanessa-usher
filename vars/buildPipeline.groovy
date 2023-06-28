@@ -126,22 +126,22 @@ void call(String pathToConfig, String nodeForRead = '') {
       stage('TDD') {
         when { expression { config.stages.tdd } }
         options {
-          timeout(time: config.tddOptional.timeout, unit: TimeUnit.MINUTES)
+          timeout(time: config.xunitOptional.timeout, unit: TimeUnit.MINUTES)
         }
 
         steps {
-          script { unitTesting(config, config.tddOptional, state) }
+          script { xunitTesting(config, config.xunitOptional, state) }
         }
       }
 
       stage('BDD') {
         when { expression { config.stages.bdd } }
         options {
-          timeout(time: config.bddOptional.timeout, unit: TimeUnit.MINUTES)
+          timeout(time: config.vanessaOptional.timeout, unit: TimeUnit.MINUTES)
         }
 
         steps {
-          script { bddTesting(config, config.bddOptional, state) }
+          script { vanessaTesting(config, config.vanessaOptional, state) }
         }
       }
 

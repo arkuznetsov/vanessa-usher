@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class EdtTransformOptional extends BaseOptional {
+
   @JsonPropertyDescription("""Модуль edt для утилиты ring. По умолчанию используется `edt`.
   Для использования, например, версии 2021.2 нужно указать `edt@2021.2.0`.
   """)
